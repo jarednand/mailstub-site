@@ -1,19 +1,48 @@
-import { Mail, Users, Inbox, Github, ChevronDown, Check } from 'lucide-react';
+import { Mail, Users, Inbox, Github, ChevronDown, Check, Code } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { CodeBlock } from '@/components/code-block';
+import { PackageManagerTabs } from '@/components/package-manager-tabs';
 
 export default function Home() {
   const clientCode = `${'import'} { client } from 'mailstub-client';
 
 await client.send('p_your-project-id', {
-  sender: 'noreply@myapp.local',
+  sender: 'noreply@myapp.com',
   receiver: 'user@example.com',
   subject: 'Welcome!',
   body: '<h1>Hello World</h1>'
 });`;
 
+  const devProdCode = `${'import'} { client as mailstubClient } from 'mailstub-client';
+${'import'} sendgrid from '@sendgrid/mail';
+
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY || '');
+
+export async function sendEmail({ to, from, subject, html }) {
+  if (process.env.NODE_ENV === 'production') {
+    // Production: Use real email service
+    await sendgrid.send({ to, from, subject, html });
+  } else {
+    // Development: Catch emails in MailStub
+    await mailstubClient.send(process.env.MAILSTUB_PROJECT_ID!, {
+      sender: from,
+      receiver: to,
+      subject,
+      body: html
+    });
+  }
+}
+
+// Usage anywhere in your app:
+await sendEmail({
+  to: 'user@example.com',
+  from: 'noreply@myapp.com',
+  subject: 'Welcome!',
+  html: '<h1>Welcome to our app!</h1>'
+});`;
+
   const exampleCode = `const result = await client.send('p_abc123', {
-  sender: 'support@myapp.local',
+  sender: 'support@myapp.com',
   receiver: 'testuser@example.com',
   subject: 'Password Reset',
   body: '<p>Click here to reset...</p>'
@@ -33,15 +62,6 @@ console.log(result.message.id); // m_xyz789`;
             <span className="text-xl font-semibold text-slate-900 dark:text-slate-100">MailStub</span>
           </div>
           <div className="flex items-center gap-6">
-            <a href="#features" className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
-              Features
-            </a>
-            <a href="#quickstart" className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
-              Quick Start
-            </a>
-            <a href="#docs" className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
-              Docs
-            </a>
             <ThemeToggle />
             <a
               href="https://github.com"
@@ -161,14 +181,15 @@ console.log(result.message.id); // m_xyz789`;
                 1
               </div>
               <div className="flex-1">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-2">
-                  Start the MailStub server
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+                  Install MailStub
                 </h3>
-                <div className="bg-slate-900 dark:bg-slate-950 rounded-lg p-4 border border-slate-800">
-                  <code className="text-sm text-slate-300 font-mono">
-                    mailstub start
-                  </code>
-                </div>
+                <PackageManagerTabs
+                  npm="npm install -g mailstub"
+                  pnpm="pnpm add -g mailstub"
+                  yarn="yarn global add mailstub"
+                  filename="terminal"
+                />
               </div>
             </div>
 
@@ -178,11 +199,12 @@ console.log(result.message.id); // m_xyz789`;
                 2
               </div>
               <div className="flex-1">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-2">
-                  Create a project and user
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+                  Start the server
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-3">
-                  Open <code className="text-sm bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded text-cyan-600 dark:text-cyan-400">http://localhost:8000</code> and create your first project and test user through the UI.
+                <CodeBlock filename="terminal" code="mailstub start" lang="bash" />
+                <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
+                  Server starts on <code className="bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">http://localhost:8000</code>
                 </p>
               </div>
             </div>
@@ -193,49 +215,73 @@ console.log(result.message.id); // m_xyz789`;
                 3
               </div>
               <div className="flex-1">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-2">
-                  Install the client and send emails
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+                  Install the client & send test emails
                 </h3>
-                <div className="bg-slate-900 dark:bg-slate-950 rounded-lg p-4 border border-slate-800 mb-3">
-                  <code className="text-sm text-slate-300 font-mono">
-                    npm install mailstub-client
-                  </code>
+                <PackageManagerTabs
+                  npm="npm install mailstub-client"
+                  pnpm="pnpm add mailstub-client"
+                  yarn="yarn add mailstub-client"
+                  filename="terminal"
+                />
+                <div className="mt-4">
+                  <CodeBlock filename="app.ts" code={clientCode} lang="typescript" />
                 </div>
-                <CodeBlock code={clientCode} filename="your-app.ts" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Documentation Section */}
-      <section id="docs" className="py-20 px-6 bg-white dark:bg-slate-900">
+      {/* Dev vs Prod Section */}
+      <section id="devprod" className="py-20 px-6 bg-white dark:bg-slate-900">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-purple-50 dark:bg-purple-950/30 text-purple-700 dark:text-purple-400 px-4 py-2 rounded-full text-sm font-medium mb-4 border border-purple-200 dark:border-purple-800">
+              <Code className="w-4 h-4" />
+              Best Practice
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">
-              API Documentation
+              Switch between dev and production
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400">
-              Simple API for sending test emails
+              Create an abstraction layer to easily switch between MailStub for development and real email services for production
             </p>
           </div>
 
-          <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700">
-            <div className="mb-8">
+          <CodeBlock filename="lib/email.ts" code={devProdCode} lang="typescript" />
+
+          <div className="mt-6 bg-cyan-50 dark:bg-cyan-950/30 border border-cyan-200 dark:border-cyan-800 rounded-lg p-5">
+            <p className="text-sm text-cyan-900 dark:text-cyan-200 leading-relaxed">
+              <strong className="font-semibold">Pro tip:</strong> This abstraction keeps your code clean and makes it easy to switch between testing and production environments. Your application code stays the same regardless of which email service you use.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* API Documentation Section */}
+      <section id="docs" className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">
+              Client API
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400">
+              Simple and intuitive API for sending test emails
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            <div>
               <h3 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mb-4">
                 client.send()
               </h3>
-              <p className="text-slate-600 dark:text-slate-400 mb-4">
-                Send a test email to MailStub.
-              </p>
-              
-              <div className="bg-slate-900 dark:bg-slate-950 rounded-lg p-4 border border-slate-800 mb-6">
-                <code className="text-sm text-slate-300 font-mono">
-                  client.send(projectId: string, options: SendEmailOptions): Promise&lt;SendEmailResponse&gt;
-                </code>
-              </div>
+              <CodeBlock 
+                lang="typescript"
+                code="client.send(projectId: string, options: SendEmailOptions): Promise<SendEmailResponse>"
+              />
 
-              <div className="space-y-4">
+              <div className="space-y-4 mt-6">
                 <div>
                   <h4 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Parameters</h4>
                   <ul className="space-y-2 text-sm">
@@ -264,7 +310,7 @@ console.log(result.message.id); // m_xyz789`;
 
                 <div>
                   <h4 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Example</h4>
-                  <CodeBlock code={exampleCode} />
+                  <CodeBlock code={exampleCode} lang="typescript" />
                 </div>
               </div>
             </div>
@@ -272,7 +318,7 @@ console.log(result.message.id); // m_xyz789`;
         </div>
       </section>
 
-      {/* Important Notes Section */}
+      {/* Usage Guidelines Section */}
       <section className="py-16 px-6 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
@@ -348,42 +394,57 @@ console.log(result.message.id); // m_xyz789`;
 
           <div className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4">
             <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-              <strong className="font-semibold">Disclaimer:</strong> MailStub is for testing purposes only. 
-              It does not provide delivery guarantees, encryption, or compliance features. 
-              Use a proper transactional email service for production.
+              <strong className="font-semibold">Disclaimer:</strong> MailStub is designed exclusively for testing purposes. 
+              It does not send real emails or provide delivery guarantees, encryption, or compliance features. 
+              For production environments, use a proper transactional email service like SendGrid, Postmark, or AWS SES.
             </p>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t border-slate-200 dark:border-slate-800">
+      <footer className="py-8 px-6 border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col items-center gap-4">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-lg flex items-center justify-center">
                 <Mail className="w-5 h-5 text-white" />
               </div>
               <span className="text-lg font-semibold text-slate-900 dark:text-slate-100">MailStub</span>
             </div>
-            <div className="flex items-center gap-6">
+            <p className="text-sm text-slate-600 dark:text-slate-400 text-center max-w-md">
+              A lightweight email testing tool for developers
+            </p>
+            <div className="flex items-center gap-4 text-sm">
               <a
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+                className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
               >
                 GitHub
               </a>
+              <span className="text-slate-300 dark:text-slate-700">•</span>
               <a
-                href="#docs"
-                className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+                href="https://npmjs.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
               >
-                Documentation
+                npm
               </a>
-              <span className="text-sm text-slate-400 dark:text-slate-500">
-                MIT License
-              </span>
+              <span className="text-slate-300 dark:text-slate-700">•</span>
+              <a
+                href="https://github.com/issues"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+              >
+                Issues
+              </a>
+            </div>
+            <div className="text-sm text-slate-500 dark:text-slate-500">
+              MIT License © {new Date().getFullYear()} Jared Nand
             </div>
           </div>
         </div>
