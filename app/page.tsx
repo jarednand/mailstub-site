@@ -3,6 +3,9 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import { CodeBlock } from '@/components/code-block';
 import { PackageManagerTabs } from '@/components/package-manager-tabs';
 
+const githubUrl = 'https://github.com/jarednand/mailstub';
+const npmUrl = 'https://www.npmjs.com/package/mailstub';
+
 export default function Home() {
   const clientCode = `${'import'} { client } from 'mailstub-client';
 
@@ -64,7 +67,7 @@ console.log(result.message.id); // m_xyz789`;
           <div className="flex items-center gap-6">
             <ThemeToggle />
             <a
-              href="https://github.com"
+              href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
@@ -92,13 +95,13 @@ console.log(result.message.id); // m_xyz789`;
           <div className="flex items-center justify-center gap-4">
             <a
               href="#quickstart"
-              className="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-lg shadow-cyan-600/20"
+              className="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
               Get Started
               <ChevronDown className="w-4 h-4" />
             </a>
             <a
-              href="https://github.com"
+              href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 px-6 py-3 rounded-lg font-medium transition-colors"
@@ -417,7 +420,7 @@ console.log(result.message.id); // m_xyz789`;
             </p>
             <div className="flex items-center gap-4 text-sm">
               <a
-                href="https://github.com"
+                href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
@@ -426,7 +429,7 @@ console.log(result.message.id); // m_xyz789`;
               </a>
               <span className="text-slate-300 dark:text-slate-700">•</span>
               <a
-                href="https://npmjs.com"
+                href={npmUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
@@ -435,7 +438,7 @@ console.log(result.message.id); // m_xyz789`;
               </a>
               <span className="text-slate-300 dark:text-slate-700">•</span>
               <a
-                href="https://github.com/issues"
+                href={`${githubUrl}/issues`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
