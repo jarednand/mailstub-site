@@ -3,8 +3,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MailStub - Email Testing for Developers",
-  description: "A lightweight email testing tool for developers. Catch and view test emails in a clean interface without sending to real inboxes.",
+  title: "MailStub | Email testing tool for developers",
+  description: "A lightweight email testing tool for developers.",
 };
 
 export default function RootLayout({

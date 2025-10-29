@@ -57,45 +57,45 @@ console.log(result.message.id); // m_xyz789`;
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border-b border-slate-200 dark:border-slate-800 z-50">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-lg flex items-center justify-center">
-              <Mail className="w-5 h-5 text-white" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-lg flex items-center justify-center flex-shrink-0">
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
-            <span className="text-xl font-semibold text-slate-900 dark:text-slate-100">MailStub</span>
+            <span className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100 truncate">MailStub</span>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 sm:gap-6 flex-shrink-0">
             <ThemeToggle />
             <a
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+              className="flex items-center gap-1.5 sm:gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
             >
               <Github className="w-4 h-4" />
-              GitHub
+              <span className="hidden sm:inline">GitHub</span>
             </a>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
+      <section className="pt-32 pb-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-cyan-50 dark:bg-cyan-950/30 text-cyan-700 dark:text-cyan-400 px-4 py-2 rounded-full text-sm font-medium mb-8 border border-cyan-200 dark:border-cyan-800">
             <span className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></span>
             Open Source Email Testing
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-slate-100 mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-slate-100 mb-6 leading-tight">
             Test emails,<br />simplified
           </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
             A lightweight email testing tool for developers. Catch and view test emails in a clean interface without sending to real inboxes.
           </p>
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="#quickstart"
-              className="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+              className="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg font-medium transition-colors w-full sm:w-auto justify-center"
             >
               Get Started
               <ChevronDown className="w-4 h-4" />
@@ -104,7 +104,7 @@ console.log(result.message.id); // m_xyz789`;
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 px-6 py-3 rounded-lg font-medium transition-colors"
+              className="inline-flex items-center gap-2 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 px-6 py-3 rounded-lg font-medium transition-colors w-full sm:w-auto justify-center"
             >
               <Github className="w-4 h-4" />
               View on GitHub
@@ -114,7 +114,7 @@ console.log(result.message.id); // m_xyz789`;
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-6 bg-white dark:bg-slate-900">
+      <section id="features" className="py-20 px-4 sm:px-6 bg-white dark:bg-slate-900">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">
@@ -125,8 +125,8 @@ console.log(result.message.id); // m_xyz789`;
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700">
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700">
               <div className="w-12 h-12 bg-cyan-100 dark:bg-cyan-950 rounded-lg flex items-center justify-center mb-4">
                 <Mail className="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
               </div>
@@ -138,7 +138,7 @@ console.log(result.message.id); // m_xyz789`;
               </p>
             </div>
 
-            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700">
+            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700">
               <div className="w-12 h-12 bg-purple-100 dark:bg-purple-950 rounded-lg flex items-center justify-center mb-4">
                 <Users className="w-6 h-6 text-purple-600 dark:text-purple-400" />
               </div>
@@ -150,7 +150,7 @@ console.log(result.message.id); // m_xyz789`;
               </p>
             </div>
 
-            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700">
+            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700">
               <div className="w-12 h-12 bg-green-100 dark:bg-green-950 rounded-lg flex items-center justify-center mb-4">
                 <Inbox className="w-6 h-6 text-green-600 dark:text-green-400" />
               </div>
@@ -166,7 +166,7 @@ console.log(result.message.id); // m_xyz789`;
       </section>
 
       {/* Quick Start Section */}
-      <section id="quickstart" className="py-20 px-6">
+      <section id="quickstart" className="py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">
@@ -179,12 +179,12 @@ console.log(result.message.id); // m_xyz789`;
 
           <div className="space-y-8">
             {/* Step 1 */}
-            <div className="flex gap-6">
+            <div className="flex gap-4 sm:gap-6">
               <div className="flex-shrink-0 w-10 h-10 bg-cyan-600 text-white rounded-full flex items-center justify-center font-semibold">
                 1
               </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
                   Install MailStub
                 </h3>
                 <PackageManagerTabs
@@ -197,28 +197,28 @@ console.log(result.message.id); // m_xyz789`;
             </div>
 
             {/* Step 2 */}
-            <div className="flex gap-6">
+            <div className="flex gap-4 sm:gap-6">
               <div className="flex-shrink-0 w-10 h-10 bg-cyan-600 text-white rounded-full flex items-center justify-center font-semibold">
                 2
               </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
                   Start the server
                 </h3>
                 <CodeBlock filename="terminal" code="mailstub start" lang="bash" />
                 <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
-                  Server starts on <code className="bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">http://localhost:8000</code>
+                  Server starts on <code className="bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded text-xs sm:text-sm break-all">http://localhost:8000</code>
                 </p>
               </div>
             </div>
 
             {/* Step 3 */}
-            <div className="flex gap-6">
+            <div className="flex gap-4 sm:gap-6">
               <div className="flex-shrink-0 w-10 h-10 bg-cyan-600 text-white rounded-full flex items-center justify-center font-semibold">
                 3
               </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
                   Install the client & send test emails
                 </h3>
                 <PackageManagerTabs
@@ -237,24 +237,24 @@ console.log(result.message.id); // m_xyz789`;
       </section>
 
       {/* Dev vs Prod Section */}
-      <section id="devprod" className="py-20 px-6 bg-white dark:bg-slate-900">
+      <section id="devprod" className="py-20 px-4 sm:px-6 bg-white dark:bg-slate-900">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-purple-50 dark:bg-purple-950/30 text-purple-700 dark:text-purple-400 px-4 py-2 rounded-full text-sm font-medium mb-4 border border-purple-200 dark:border-purple-800">
               <Code className="w-4 h-4" />
               Best Practice
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">
               Switch between dev and production
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
               Create an abstraction layer to easily switch between MailStub for development and real email services for production
             </p>
           </div>
 
           <CodeBlock filename="lib/email.ts" code={devProdCode} lang="typescript" />
 
-          <div className="mt-6 bg-cyan-50 dark:bg-cyan-950/30 border border-cyan-200 dark:border-cyan-800 rounded-lg p-5">
+          <div className="mt-6 bg-cyan-50 dark:bg-cyan-950/30 border border-cyan-200 dark:border-cyan-800 rounded-lg p-4 sm:p-5">
             <p className="text-sm text-cyan-900 dark:text-cyan-200 leading-relaxed">
               <strong className="font-semibold">Pro tip:</strong> This abstraction keeps your code clean and makes it easy to switch between testing and production environments. Your application code stays the same regardless of which email service you use.
             </p>
@@ -263,7 +263,7 @@ console.log(result.message.id); // m_xyz789`;
       </section>
 
       {/* API Documentation Section */}
-      <section id="docs" className="py-20 px-6">
+      <section id="docs" className="py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">
@@ -276,7 +276,7 @@ console.log(result.message.id); // m_xyz789`;
 
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mb-4">
+              <h3 className="text-xl sm:text-2xl font-semibold text-slate-900 dark:text-slate-100 mb-4">
                 client.send()
               </h3>
               <CodeBlock 
@@ -288,24 +288,24 @@ console.log(result.message.id); // m_xyz789`;
                 <div>
                   <h4 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Parameters</h4>
                   <ul className="space-y-2 text-sm">
-                    <li className="flex gap-2">
-                      <code className="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-cyan-600 dark:text-cyan-400">projectId</code>
+                    <li className="flex flex-col sm:flex-row gap-2">
+                      <code className="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-cyan-600 dark:text-cyan-400 inline-block">projectId</code>
                       <span className="text-slate-600 dark:text-slate-400">The ID of your project (format: p_xxxxx)</span>
                     </li>
-                    <li className="flex gap-2">
-                      <code className="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-cyan-600 dark:text-cyan-400">sender</code>
+                    <li className="flex flex-col sm:flex-row gap-2">
+                      <code className="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-cyan-600 dark:text-cyan-400 inline-block">sender</code>
                       <span className="text-slate-600 dark:text-slate-400">Full sender email address</span>
                     </li>
-                    <li className="flex gap-2">
-                      <code className="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-cyan-600 dark:text-cyan-400">receiver</code>
+                    <li className="flex flex-col sm:flex-row gap-2">
+                      <code className="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-cyan-600 dark:text-cyan-400 inline-block">receiver</code>
                       <span className="text-slate-600 dark:text-slate-400">Recipient email (must be a user in your project)</span>
                     </li>
-                    <li className="flex gap-2">
-                      <code className="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-cyan-600 dark:text-cyan-400">subject</code>
+                    <li className="flex flex-col sm:flex-row gap-2">
+                      <code className="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-cyan-600 dark:text-cyan-400 inline-block">subject</code>
                       <span className="text-slate-600 dark:text-slate-400">Email subject line</span>
                     </li>
-                    <li className="flex gap-2">
-                      <code className="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-cyan-600 dark:text-cyan-400">body</code>
+                    <li className="flex flex-col sm:flex-row gap-2">
+                      <code className="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-cyan-600 dark:text-cyan-400 inline-block">body</code>
                       <span className="text-slate-600 dark:text-slate-400">Email body (supports HTML)</span>
                     </li>
                   </ul>
@@ -322,7 +322,7 @@ console.log(result.message.id); // m_xyz789`;
       </section>
 
       {/* Usage Guidelines Section */}
-      <section className="py-16 px-6 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+      <section className="py-16 px-4 sm:px-6 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
@@ -406,7 +406,7 @@ console.log(result.message.id); // m_xyz789`;
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 border-t border-slate-200 dark:border-slate-800">
+      <footer className="py-8 px-4 sm:px-6 border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col items-center gap-4">
             <div className="flex items-center gap-2">
@@ -415,10 +415,10 @@ console.log(result.message.id); // m_xyz789`;
               </div>
               <span className="text-lg font-semibold text-slate-900 dark:text-slate-100">MailStub</span>
             </div>
-            <p className="text-sm text-slate-600 dark:text-slate-400 text-center max-w-md">
+            <p className="text-sm text-slate-600 dark:text-slate-400 text-center max-w-md px-4">
               A lightweight email testing tool for developers
             </p>
-            <div className="flex items-center gap-4 text-sm">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-sm">
               <a
                 href={githubUrl}
                 target="_blank"
